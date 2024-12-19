@@ -1,28 +1,25 @@
-using System.Text;
-using P01_Middleware.CustomMiddleware;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 var builder = WebApplication.CreateBuilder(args);
-// add my own middleware class as a service
-builder.Services.AddTransient<MyCustomMiddleware>();
-var app = builder.Build(); 
+var app = builder.Build();
 
-// app.MapGet("/", () => "Hello World!");
-// middleware 1
-app.Use(async (HttpContext context, RequestDelegate next) =>
+// only execute when the condition is true
+app.UseWhen(
+    context => context.Request.Query.ContainsKey("username"),
+    app =>
+    {
+        app.Use(async (context, next) =>
+        {
+            await context.Response.WriteAsync($"Hello {context.Request.Query["username"]}!\n");
+            await next();
+        });
+    }
+);
+
+// Any requests will come here.
+app.Run(async context =>
 {
-    await context.Response.WriteAsync("Hello start \n");
-    await next.Invoke(context);
-    await context.Response.WriteAsync("Hello end \n");
+    await context.Response.WriteAsync("hello from main chain!");
 });
-
-// middleware 2
-// app.UseMiddleware<MyCustomMiddleware>();
-app.UseMyCustomMiddleware();
-
-// middleware 3
-app.UseMyCustomMiddleware1();
-
-// middleware 4
-app.Run(async (HttpContext context) => { await context.Response.WriteAsync("ChelseaX\n"); });
 
 app.Run();
