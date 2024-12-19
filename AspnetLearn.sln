@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01-Middleware", "P01-Middleware\P01-Middleware.csproj", "{C437870A-AFBA-4BD2-B688-3C13FD4D62AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P02-Routing", "P02-Routing\P02-Routing.csproj", "{5D690735-CC99-4FD8-AEFD-488C5F1B381D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C437870A-AFBA-4BD2-B688-3C13FD4D62AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C437870A-AFBA-4BD2-B688-3C13FD4D62AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C437870A-AFBA-4BD2-B688-3C13FD4D62AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D690735-CC99-4FD8-AEFD-488C5F1B381D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D690735-CC99-4FD8-AEFD-488C5F1B381D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D690735-CC99-4FD8-AEFD-488C5F1B381D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D690735-CC99-4FD8-AEFD-488C5F1B381D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
