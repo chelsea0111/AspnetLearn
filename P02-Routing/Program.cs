@@ -10,6 +10,8 @@ builder.Services.AddRouting(options =>
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 // enable routing
 app.UseRouting();
 
@@ -74,6 +76,12 @@ app.UseEndpoints(async endpoints =>
             await context.Response.WriteAsync($"sales report - {year} - {month}");
         });
     
+    
+    // access to the wwwroot
+    endpoints.Map("/", async context =>
+    {
+        await context.Response.WriteAsync("Hello");
+    });
 });
 
 app.Run(async context => { await context.Response.WriteAsync($"Request received at {context.Request.Path}"); });
