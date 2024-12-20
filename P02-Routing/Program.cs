@@ -1,30 +1,79 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using P02_Routing.CustomConstraints;
 
-app.Use(async (context, next) =>
+var builder = WebApplication.CreateBuilder(args);
+
+// register my custom constraint in the services
+builder.Services.AddRouting(options =>
 {
-    Endpoint? endpoint = context.GetEndpoint(); // it will be null if it's before app.UseRouting();
-    Console.WriteLine(endpoint == null);
-    await next();
+    options.ConstraintMap.Add("months", typeof(MonthCustomConstraint));
 });
+
+var app = builder.Build();
 
 // enable routing
 app.UseRouting();
 
-app.Use(async (context, next) =>
+app.UseEndpoints(async endpoints =>
 {
-    Endpoint? endpoint = context.GetEndpoint(); 
-    Console.WriteLine(endpoint == null);
-    await next();
-});
+    endpoints.Map("files/{filename}.{extension}", async context =>
+    {
+        string? fileName = Convert.ToString(context.Request.RouteValues["filename"]);
+        string? extension = Convert.ToString(context.Request.RouteValues["extension"]);
 
-// creating end points
-app.UseEndpoints((IEndpointRouteBuilder endpoints) =>
-{
-    endpoints.Map("map1",
-        async (context) => await context.Response.WriteAsync("In Map 1"));
-    endpoints.MapGet("map2",
-        async (context) => await context.Response.WriteAsync("In Map 2"));
+        await context.Response.WriteAsync($"In files - {fileName}.{extension}");
+    });
+
+    endpoints.Map("employee/profile/{employeeName=Jack}", async context =>
+    {
+        string? employeeName = Convert.ToString(context.Request.RouteValues["employeeName"]);
+        await context.Response.WriteAsync($"In employee - {employeeName}");
+    });
+
+    endpoints.Map("products/details/{id:int?}", async context =>
+    {
+        int id = Convert.ToInt32(context.Request.RouteValues["id"]);
+        await context.Response.WriteAsync($"In products - {id}");
+    });
+
+    // route constraints - datetime
+    endpoints.Map("employee/enter/{date:datetime}", async context =>
+    {
+        var dateTime = Convert.ToDateTime(context.Request.RouteValues["date"]);
+        await context.Response.WriteAsync($"dateTime - {dateTime.ToShortDateString()}");
+    });
+
+    // route constraints - guid
+    endpoints.Map("cities/{cityid:guid}", async context =>
+    {
+        Guid guid = Guid.Parse(context.Request.RouteValues["cityid"].ToString());
+        await context.Response.WriteAsync($"Guid is: {guid}");
+    });
+
+    // route constraints - minlength/maxlength
+    endpoints.Map("phone/{phonenumber:}", async context =>
+    {
+        Guid guid = Guid.Parse(context.Request.RouteValues["cityid"].ToString());
+        await context.Response.WriteAsync($"Guid is: {guid}");
+    });
+
+    // route constraints - regex
+    // endpoints.Map("sales-report/{year:int:min(1990)}/{month:regex(^(apr)|(jul)|(oct)|(jan)$)}",
+    //     async context =>
+    //     {
+    //         int year = Convert.ToInt32(context.Request.RouteValues["year"]);
+    //         string? month = Convert.ToString(context.Request.RouteValues["month"]);
+    //         await context.Response.WriteAsync($"sales report - {year} - {month}");
+    //     });
+    
+    // route constraints - custom constraint
+    endpoints.Map("sales-report/{year:int:min(1990)}/{month:months}",
+        async context =>
+        {
+            int year = Convert.ToInt32(context.Request.RouteValues["year"]);
+            string? month = Convert.ToString(context.Request.RouteValues["month"]);
+            await context.Response.WriteAsync($"sales report - {year} - {month}");
+        });
+    
 });
 
 app.Run(async context => { await context.Response.WriteAsync($"Request received at {context.Request.Path}"); });
