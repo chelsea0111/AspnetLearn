@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using P03_Controllers.Models;
 
 namespace P03_Controllers.Controllers;
 
@@ -13,15 +14,22 @@ public class HomeController : Controller
         // {
         //     Content = "Hello from home!~~~", ContentType = "text/plain"
         // };
-        
+
         // to use this predefined method, the XxxController must inherit from the Controller parent class
         return Content("<h1>Hello from home!~~~!!!</h1> <h2>I'm h2</h2>", "text/html");
     }
 
-    [Route("about")]
-    public string About()
+    [Route("person")]
+    public JsonResult Person()
     {
-        return "Hello from about!";
+        Person person = new Person()
+        {
+            Id = Guid.NewGuid(), FirstName = "James", LastName = "Smith", Age = 25
+        };
+        // return new JsonResult(person);
+
+        // to use this predefined method, the XxxController must inherit from the Controller parent class
+        return Json(person);
     }
 
     [Route("contact-us/{mobile:regex(^\\d{{10}}$)}")]
