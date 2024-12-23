@@ -3,7 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // So that, they cna be accessed when a specific endpoint needs it.
 builder.Services.AddControllers();
 
-var app = builder.Build(); 
+var app = builder.Build();
+
+app.UseStaticFiles();
 // app.UseRouting();
 // app.UseEndpoints(endpoints =>
 // {

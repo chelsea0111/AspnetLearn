@@ -37,4 +37,24 @@ public class HomeController : Controller
     {
         return "Hello from contact!";
     }
+
+    [Route("file-download1")]
+    public VirtualFileResult FileDownload()
+    {
+        return new VirtualFileResult("/carr.png", "image/png");
+    }
+    
+    [Route("file-download2")]
+    public PhysicalFileResult FileDownload2()
+    {
+        return new PhysicalFileResult("/Users/xuxinyi/code/dotnet/aspnet_basic/learn/AspnetLearn/P03-Controllers/wwwroot/carr.png", "image/png");
+    }
+
+    [Route("file-download3")]
+    public FileContentResult FileDownload3()
+    {
+        byte[] bytes = System.IO.File.ReadAllBytes("/Users/xuxinyi/code/dotnet/aspnet_basic/learn/AspnetLearn/P03-Controllers/wwwroot/carr.png");
+        // return new FileContentResult(bytes, "image/png");
+        return File(bytes, "image/png");
+    }
 }
