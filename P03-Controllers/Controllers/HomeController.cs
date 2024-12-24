@@ -51,7 +51,7 @@ public class HomeController : Controller
     }
 
     [Route("file-download3")]
-    public FileContentResult FileDownload3()
+    public IActionResult FileDownload3()
     {
         byte[] bytes = System.IO.File.ReadAllBytes("/Users/xuxinyi/code/dotnet/aspnet_basic/learn/AspnetLearn/P03-Controllers/wwwroot/carr.png");
         // return new FileContentResult(bytes, "image/png");

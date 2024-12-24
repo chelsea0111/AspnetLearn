@@ -6,11 +6,14 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseStaticFiles();
-// app.UseRouting();
+app.UseRouting();
+
 // app.UseEndpoints(endpoints =>
 // {
 //     endpoints.MapControllers();
 // });
+
+
 // 2. adds all actions methods as endpoints.
 // So that, no need of using UseEndPoints() method for adding action methods as endpoint
 app.MapControllers();
