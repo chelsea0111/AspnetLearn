@@ -39,4 +39,12 @@ public class BookController : Controller
 
         return File("/carr.png", "image/png");
     }
+
+    [Route("bookstore")]
+    public IActionResult Bookstore()
+    {
+        int p1 = Convert.ToInt16(Request.Query["p1"]);
+        // return new RedirectToActionResult("Books", "Store", null);
+        return RedirectToAction("Books", "Store", new { id = p1 });
+    }
 }
