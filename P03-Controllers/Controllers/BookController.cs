@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using P03_Controllers.Models;
 
 namespace P03_Controllers.Controllers;
 
@@ -6,21 +7,16 @@ namespace P03_Controllers.Controllers;
 public class BookController : Controller
 {
     [Route("book/{bookid}/{isloggedin}")]
-    public IActionResult Index([FromQuery] int? bookid, bool? isloggedin)
+    public IActionResult Index([FromQuery] int? bookid, [FromRoute] bool? isloggedin, Book book)
     {
         if (!bookid.HasValue)
         {
             return BadRequest("Book id should be supplied or empty!");
         }
 
-        if (bookid <= 0)
+        if (bookid <= 0 || bookid > 1000)
         {
-            return BadRequest("Book id can not be less than 0");
-        }
-
-        if (bookid > 1000)
-        {
-            return BadRequest("Book id can not be greater than 1000");
+            return BadRequest("Book id can not be less than 0 or greater than 1000");
         }
 
         // isLoggedin
@@ -29,7 +25,7 @@ public class BookController : Controller
             return Unauthorized("User must be authenticated!!!");
         }
 
-        return File("/carr.png", "image/png");
+        return Content($"Book id: {bookid}, Book: {book}");
     }
 
     [Route("bookstore")]
