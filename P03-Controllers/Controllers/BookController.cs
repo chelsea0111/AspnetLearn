@@ -7,7 +7,7 @@ namespace P03_Controllers.Controllers;
 public class BookController : Controller
 {
     [Route("book/{bookid}/{isloggedin}")]
-    public IActionResult Index([FromQuery] int? bookid, [FromRoute] bool? isloggedin, Book book)
+    public IActionResult Index(int? bookid, [FromRoute] bool? isloggedin, Book book)
     {
         if (!bookid.HasValue)
         {
