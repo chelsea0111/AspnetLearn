@@ -5,34 +5,26 @@ namespace P03_Controllers.Controllers;
 [Controller]
 public class BookController : Controller
 {
-    [Route("book")]
-    public IActionResult Index()
+    [Route("book/{bookid}/{isloggedin}")]
+    public IActionResult Index([FromQuery] int? bookid, bool? isloggedin)
     {
-        if (!Request.Query.ContainsKey("bookid"))
+        if (!bookid.HasValue)
         {
-            // Response.StatusCode = 400;
-            // return Content("Book id should be supplied!");
-            return BadRequest("Book id should be supplied!");
+            return BadRequest("Book id should be supplied or empty!");
         }
 
-        if (string.IsNullOrEmpty(Convert.ToString(Request.Query["bookid"])))
-        {
-            return BadRequest("Book id cannot be null or empty!");
-        }
-
-        var bookId = Convert.ToInt16(ControllerContext.HttpContext.Request.Query["bookid"]);
-        if (bookId <= 0)
+        if (bookid <= 0)
         {
             return BadRequest("Book id can not be less than 0");
         }
 
-        if (bookId > 1000)
+        if (bookid > 1000)
         {
             return BadRequest("Book id can not be greater than 1000");
         }
 
         // isLoggedin
-        if (!Convert.ToBoolean(Request.Query["isloggedin"]))
+        if (isloggedin == false)
         {
             return Unauthorized("User must be authenticated!!!");
         }
