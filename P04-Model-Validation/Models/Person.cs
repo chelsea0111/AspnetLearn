@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using P04_Model_Validation.CustomValidators;
 
 namespace P04_Model_Validation.Models;
 
@@ -17,11 +18,11 @@ public class Person
     public string? Email { get; set; }
 
     // [Phone(ErrorMessage = "invalid {0} number")]
-    [ValidateNever]
-    public string? Phone { get; set; }
+    [ValidateNever] public string? Phone { get; set; }
 
     [Required(ErrorMessage = "{0} can't be blank")]
     public string? Password { get; set; }
+
     [Required(ErrorMessage = "{0} can't be blank")]
     [Compare("Password", ErrorMessage = "{0} and {1} doesn't match")]
     [Display(Name = "Re-enter Password")]
@@ -29,7 +30,10 @@ public class Person
 
     [Range(0, 99.99, ErrorMessage = "{0} should be between ${1} and ${2}")]
     public double? Price { get; set; }
-     
+
+    [MinimumYearValidator(1995)]
+    public DateTime? DateOfBirth { get; set; }
+
     public override string ToString()
     {
         return
