@@ -29,7 +29,6 @@ public class Person
 
     [Range(0, 99.99, ErrorMessage = "{0} should be between ${1} and ${2}")]
     public double? Price { get; set; }
-
     
     public override string ToString()
     {
