@@ -34,6 +34,10 @@ public class Person
     [MinimumYearValidator(1995)]
     public DateTime? DateOfBirth { get; set; }
 
+    public DateTime? FromDate { get; set; }
+    [DateRangeValidator("FromDate",ErrorMessage="'From Date' should be older than or equal to 'To Date'")]
+    public DateTime? ToDate { get; set; }
+
     public override string ToString()
     {
         return
