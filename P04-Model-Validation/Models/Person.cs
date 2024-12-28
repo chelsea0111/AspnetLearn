@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using P04_Model_Validation.CustomValidators;
 
@@ -31,7 +32,9 @@ public class Person : IValidatableObject
     [Range(0, 99.99, ErrorMessage = "{0} should be between ${1} and ${2}")]
     public double? Price { get; set; }
 
-    [MinimumYearValidator(1995)] public DateTime? DateOfBirth { get; set; }
+    [BindNever]
+    [MinimumYearValidator(1995)]
+    public DateTime? DateOfBirth { get; set; }
 
     public DateTime? FromDate { get; set; }
 
@@ -50,10 +53,10 @@ public class Person : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-         // requirement: either dateofBirth or age can be null, but not both null at the same time
-         if (DateOfBirth.HasValue == false && Age.HasValue == false)
-         {
-             yield return new ValidationResult("Either DateofBirth or Age must be supplied.", new[] { nameof(Age),});
-         }
+        // requirement: either dateofBirth or age can be null, but not both null at the same time
+        if (DateOfBirth.HasValue == false && Age.HasValue == false)
+        {
+            yield return new ValidationResult("Either DateofBirth or Age must be supplied.", new[] { nameof(Age), });
+        }
     }
 }
