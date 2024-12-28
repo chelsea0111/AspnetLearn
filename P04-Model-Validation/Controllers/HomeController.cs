@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using P04_Model_Validation.CustomModelBinders;
 using P04_Model_Validation.Models;
 
 namespace P04_Model_Validation.Controllers;
@@ -12,7 +13,7 @@ public class HomeController : Controller
     //     [Bind(nameof(Person.PersonName), nameof(Person.Email), nameof(Person.Password),
     //         nameof(Person.ConfirmPassword))]
     //     Person person)
-    public IActionResult Index(Person person)
+    public IActionResult Index([FromBody] [ModelBinder(BinderType = typeof(PersonModelBinder))] Person person)
     {
         if (!ModelState.IsValid)
         {
