@@ -5,7 +5,7 @@ using P04_Model_Validation.CustomValidators;
 
 namespace P04_Model_Validation.Models;
 
-public class Person
+public class Person : IValidatableObject
 {
     [Required(ErrorMessage = "{0} can't be empty or null")]
     [Display(Name = "Person Name")]
@@ -31,12 +31,14 @@ public class Person
     [Range(0, 99.99, ErrorMessage = "{0} should be between ${1} and ${2}")]
     public double? Price { get; set; }
 
-    [MinimumYearValidator(1995)]
-    public DateTime? DateOfBirth { get; set; }
+    [MinimumYearValidator(1995)] public DateTime? DateOfBirth { get; set; }
 
     public DateTime? FromDate { get; set; }
-    [DateRangeValidator("FromDate",ErrorMessage="'From Date' should be older than or equal to 'To Date'")]
+
+    [DateRangeValidator("FromDate", ErrorMessage = "'From Date' should be older than or equal to 'To Date'")]
     public DateTime? ToDate { get; set; }
+
+    public int? Age { get; set; }
 
     public override string ToString()
     {
@@ -44,5 +46,14 @@ public class Person
             $"{nameof(PersonName)}: {PersonName}, {nameof(Email)}: {Email}, " +
             $"{nameof(Phone)}: {Phone}, {nameof(Password)}: {Password}, " +
             $"{nameof(ConfirmPassword)}: {ConfirmPassword}, {nameof(Price)}: {Price}";
+    }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+         // requirement: either dateofBirth or age can be null, but not both null at the same time
+         if (DateOfBirth.HasValue == false && Age.HasValue == false)
+         {
+             yield return new ValidationResult("Either DateofBirth or Age must be supplied.", new[] { nameof(Age),});
+         }
     }
 }
