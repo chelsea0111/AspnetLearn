@@ -1,0 +1,24 @@
+@using P05_Views.Models
+
+@{
+    string appTitle = "Asp.Net Core App";
+    Person person = new Person() { Name = "john", DateOfBirth = Convert.ToDateTime("2000-01-01") };
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@appTitle</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<h1>Welcome!</h1>
+<h2>@person.Name! </h2>
+@{
+    var age = Math.Round((DateTime.Now - person.DateOfBirth).TotalDays / 365);
+}
+<h3>@age years old</h3>
+</body>
+</html>
