@@ -2,9 +2,29 @@
 
 @{
     string appTitle = "Asp.Net Core App";
-    Person person = new Person() { Name = "john", DateOfBirth = Convert.ToDateTime("2000-01-01") };
+    Person person = new Person() { Name = "john", DateOfBirth = null };
+    List<Person> people = new List<Person>()
+    {
+        new Person() { Name = "Tim", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Male },
+        new Person() { Name = "Linda", DateOfBirth = DateTime.Parse("2005-01-09"), PersonGender = Gender.Female },
+        new Person() { Name = "Susan", DateOfBirth = DateTime.Parse("2008-07-12"), PersonGender = Gender.Other },
+    };
 }
 
+@{
+
+    int? GetAge(DateTime? dateOfBirth)
+    {
+        if (dateOfBirth is not null)
+        {
+            return (int)Math.Round((DateTime.Now - dateOfBirth).Value.TotalDays / 365);
+        }
+
+        return null;
+    }
+
+    string alertMsg = $"<script>alert('{people.Count} people found')</script>";
+}
 
 <!DOCTYPE html>
 
@@ -14,11 +34,24 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<h1>Welcome!</h1>
-<h2>@person.Name! </h2>
-@{
-    var age = Math.Round((DateTime.Now - person.DateOfBirth).TotalDays / 365);
+@* <h2>@person.Name! </h2> *@
+@* @if (person.DateOfBirth != null) *@
+@* { *@
+@*     var age = Math.Round((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365); *@
+@*     <h3>@age years old</h3> *@
+@* } *@
+
+@Html.Raw(alertMsg)
+@foreach (Person p in people)
+{
+    <div>
+        <span>@p.PersonGender, </span>
+        @if (p.DateOfBirth != null)
+        {
+            @p.DateOfBirth.Value.ToString("MM/dd/yyyy")
+            <span>,@GetAge(p.DateOfBirth)</span>
+        }
+    </div>
 }
-<h3>@age years old</h3>
 </body>
 </html>
