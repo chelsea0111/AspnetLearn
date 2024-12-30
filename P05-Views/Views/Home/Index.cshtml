@@ -1,8 +1,8 @@
 @using P05_Views.Models
-
+@model IEnumerable<Person>
 @{
     // List<Person>? people = (List<Person>)ViewData["people"];
-    List<Person> people = ViewBag.people;
+    // List<Person> people = ViewBag.people;
 }
 
 @{
@@ -26,7 +26,8 @@
 </head>
 <body>
 
-@foreach (Person p in people)
+
+@foreach (Person p in Model)
 {
     <div>
         <span>@p.Name, </span>

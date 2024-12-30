@@ -22,7 +22,7 @@ public class HomeController : Controller
             new Person() { Name = "Linda", DateOfBirth = DateTime.Parse("2005-01-09"), PersonGender = Gender.Female },
             new Person() { Name = "Susan", DateOfBirth = null, PersonGender = Gender.Other },
         };
-        ViewBag.people = people;
-        return View();
+        // ViewBag.people = people;
+        return View(people);
     }
 }
