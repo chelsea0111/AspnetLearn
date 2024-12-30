@@ -54,4 +54,12 @@ public class HomeController : Controller
             { PersonData = person, ProductData = product };
         return View(personAndProductWrapperModel);
     }
+    
+    [Route("/home/all")]
+    public IActionResult All()
+    {
+        // firstly - Views/Home/All.cshtml
+        // then - Views/Shared/All.cshtml
+        return View(); 
+    }
 }
