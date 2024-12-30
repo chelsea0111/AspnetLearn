@@ -2,7 +2,10 @@
 @{
     // Layout = "_Layout";
     ViewData["Title"] = "Search Title";
-    Layout = "_ProductLayout";
+    if (ViewBag.productId != null)
+    {
+        Layout = "_ProductLayout";
+    }
 }
 
 <h1>Search</h1>
