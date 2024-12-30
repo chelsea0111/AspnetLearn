@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P05-Views", "P05-Views\P05-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P06-Layout-Views", "P06-Layout-Views\P06-Layout-Views.csproj", "{7919A033-61BB-4598-9F99-5343189BE7AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P07-Partial-Views", "P07-Partial-Views\P07-Partial-Views.csproj", "{3A250086-E0B0-4553-B870-3DE2C56E4773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7919A033-61BB-4598-9F99-5343189BE7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7919A033-61BB-4598-9F99-5343189BE7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7919A033-61BB-4598-9F99-5343189BE7AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A250086-E0B0-4553-B870-3DE2C56E4773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A250086-E0B0-4553-B870-3DE2C56E4773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A250086-E0B0-4553-B870-3DE2C56E4773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A250086-E0B0-4553-B870-3DE2C56E4773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
