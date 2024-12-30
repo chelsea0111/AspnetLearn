@@ -1,18 +1,10 @@
 @using P05_Views.Models
 
 @{
-    string appTitle = "Asp.Net Core App";
-    Person person = new Person() { Name = "john", DateOfBirth = null };
-    List<Person> people = new List<Person>()
-    {
-        new Person() { Name = "Tim", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Male },
-        new Person() { Name = "Linda", DateOfBirth = DateTime.Parse("2005-01-09"), PersonGender = Gender.Female },
-        new Person() { Name = "Susan", DateOfBirth = DateTime.Parse("2008-07-12"), PersonGender = Gender.Other },
-    };
+    List<Person>? people = (List<Person>)ViewData["people"];
 }
 
 @{
-
     int? GetAge(DateTime? dateOfBirth)
     {
         if (dateOfBirth is not null)
@@ -22,34 +14,26 @@
 
         return null;
     }
-
-    string alertMsg = $"<script>alert('{people.Count} people found')</script>";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>@appTitle</title>
+    <title>@ViewData["appTitle"]</title>
     <meta charset="UTF-8"/>
 </head>
 <body>
-@* <h2>@person.Name! </h2> *@
-@* @if (person.DateOfBirth != null) *@
-@* { *@
-@*     var age = Math.Round((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365); *@
-@*     <h3>@age years old</h3> *@
-@* } *@
 
-@Html.Raw(alertMsg)
 @foreach (Person p in people)
 {
     <div>
+        <span>@p.Name, </span>
         <span>@p.PersonGender, </span>
         @if (p.DateOfBirth != null)
         {
             @p.DateOfBirth.Value.ToString("MM/dd/yyyy")
-            <span>,@GetAge(p.DateOfBirth)</span>
+            <span>,@GetAge(p.DateOfBirth) years old</span>
         }
     </div>
 }
