@@ -1,4 +1,4 @@
-@using P05_Views.Models
+
 @model IEnumerable<Person>
 @{
     // List<Person>? people = (List<Person>)ViewData["people"];
@@ -23,20 +23,55 @@
 <head>
     <title>@ViewData["appTitle"]</title>
     <meta charset="UTF-8"/>
+    <style>
+        table {
+            border: 1px solid black;
+            margin-bottom: 20px;
+            width: 300px; /* 调整表格宽度 */
+            border-collapse: collapse; /* 合并边框 */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-
+<h1>Persons</h1>
 
 @foreach (Person p in Model)
 {
     <div>
-        <span>@p.Name, </span>
-        <span>@p.PersonGender, </span>
-
-        @p.DateOfBirth?.ToString("MM/dd/yyyy")
-        <span>,@GetAge(p.DateOfBirth) years old</span>
-        
+        <h3>@p.Name</h3>
+        <table>
+            <tbody>
+            <tr>
+                <th>Gender</th>
+                <td>@p.PersonGender</td>
+            </tr>
+            <tr>
+                <th>Date of Birth</th>
+                <td>@p.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <a href="/person-details/@p.Name">Details</a>
+        </div>
     </div>
 }
+<div>
+    <a href="/person-with-product">Person With Product</a>
+</div>
 </body>
 </html>

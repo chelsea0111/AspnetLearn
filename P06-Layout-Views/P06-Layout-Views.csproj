@@ -4,12 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>P05_Views</RootNamespace>
+        <RootNamespace>P06_Layout_Views</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Views\Product\" />
-      <Folder Include="wwwroot\" />
-    </ItemGroup>
 
 </Project>
