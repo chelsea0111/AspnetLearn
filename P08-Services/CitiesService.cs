@@ -1,12 +1,12 @@
 ﻿namespace P08_Services;
 
-public class CitiesServices
+public class CitiesService
 {
     private List<string> _cities;
 
-    public CitiesServices(List<string> cities)
+    public CitiesService()
     {
-        _cities = cities = new List<string>()
+        _cities = new List<string>()
         {
             "London",
             "Paris",

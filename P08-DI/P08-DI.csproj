@@ -7,4 +7,8 @@
         <RootNamespace>P08_DI</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\P08-Services\P08-Services.csproj" />
+    </ItemGroup>
+
 </Project>
