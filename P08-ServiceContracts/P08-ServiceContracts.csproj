@@ -2,13 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <RootNamespace>P08_Services</RootNamespace>
+        <RootNamespace>P08_ServiceContracts</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\P08-ServiceContracts\P08-ServiceContracts.csproj" />
-    </ItemGroup>
 
 </Project>

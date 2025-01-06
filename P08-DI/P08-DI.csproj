@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\P08-ServiceContracts\P08-ServiceContracts.csproj" />
       <ProjectReference Include="..\P08-Services\P08-Services.csproj" />
     </ItemGroup>
 

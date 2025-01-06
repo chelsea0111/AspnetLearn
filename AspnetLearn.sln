@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P08-DI", "P08-DI\P08-DI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P08-Services", "P08-Services\P08-Services.csproj", "{451B4C0A-F5FE-4E93-BB18-AE5796E75932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P08-ServiceContracts", "P08-ServiceContracts\P08-ServiceContracts.csproj", "{C43AA171-3034-4C93-A127-AA5FE63F7ACB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +54,9 @@ Global
 		{451B4C0A-F5FE-4E93-BB18-AE5796E75932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{451B4C0A-F5FE-4E93-BB18-AE5796E75932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{451B4C0A-F5FE-4E93-BB18-AE5796E75932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43AA171-3034-4C93-A127-AA5FE63F7ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43AA171-3034-4C93-A127-AA5FE63F7ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43AA171-3034-4C93-A127-AA5FE63F7ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43AA171-3034-4C93-A127-AA5FE63F7ACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

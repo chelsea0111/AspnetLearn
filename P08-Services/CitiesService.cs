@@ -1,6 +1,6 @@
 ﻿namespace P08_Services;
-
-public class CitiesService
+using P08_ServiceContracts;
+public class CitiesService: ICitiesService
 {
     private List<string> _cities;
 
