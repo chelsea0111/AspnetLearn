@@ -6,24 +6,33 @@ namespace P08_DI.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ICitiesService _citiesService1;
-    private readonly ICitiesService _citiesService2;
-    private readonly ICitiesService _citiesService3;
+    private readonly ICitiesService _citiesService;
+    private readonly IServiceScopeFactory _serviceScopeFactory;
 
-    public HomeController(ICitiesService citiesService1, ICitiesService citiesService2, ICitiesService citiesService3)
+    public HomeController(ICitiesService citiesService, ICitiesService citiesService2, ICitiesService citiesService3,
+        IServiceScopeFactory serviceScopeFactory)
     {
-        _citiesService1 = citiesService1; // new CitiesService()
-        _citiesService2 = citiesService2; // new CitiesService()
-        _citiesService3 = citiesService3; // new CitiesService()
+        _citiesService = citiesService; // new CitiesService()
+        _serviceScopeFactory = serviceScopeFactory;
     }
 
     [Route("/")]
     public IActionResult Index()
     {
-        Console.WriteLine(_citiesService1.ServiceInstanceId);
-        Console.WriteLine(_citiesService2.ServiceInstanceId);
-        Console.WriteLine(_citiesService3.ServiceInstanceId);
-        List<string> cities = _citiesService1.GetCities();
+        Console.WriteLine(_citiesService.ServiceInstanceId);
+
+        // at the end of using block, it will automatically call Dispose() method
+        // for all the services injected as a part of this scope.
+        using (IServiceScope scope = _serviceScopeFactory.CreateScope())
+        {
+            // inject CitiesService here
+            ICitiesService citiesService = scope.ServiceProvider.GetRequiredService<ICitiesService>();
+            Console.WriteLine(citiesService.ServiceInstanceId);
+            // db work
+            Console.WriteLine("db...working...");
+        } // it calls CitiesService.Dispose() 
+
+        List<string> cities = _citiesService.GetCities();
         return View(cities);
     }
 }
