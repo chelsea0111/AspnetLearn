@@ -4,8 +4,9 @@ using P08_Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // register the Service into IoC Container base on interface
-builder.Services.Add(
-    new ServiceDescriptor(typeof(ICitiesService), typeof(CitiesService), ServiceLifetime.Scoped));
+// builder.Services.Add(
+//     new ServiceDescriptor(typeof(ICitiesService), typeof(CitiesService), ServiceLifetime.Scoped));
+builder.Services.AddScoped<ICitiesService, CitiesService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
