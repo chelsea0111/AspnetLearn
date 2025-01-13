@@ -1,13 +1,24 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using P08_ServiceContracts;
 using P08_Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// register the Service into IoC Container base on interface
-// builder.Services.Add(
-//     new ServiceDescriptor(typeof(ICitiesService), typeof(CitiesService), ServiceLifetime.Scoped));
-builder.Services.AddScoped<ICitiesService, CitiesService>();
+// use a custom or third-party service provider factory instead of built-in IoC container
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+// add services into autoFac 
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterType<CitiesService>()
+        .As<ICitiesService>()
+        // .InstancePerDependency(); // as transient
+        // .SingleInstance(); // as singleton
+        .InstancePerLifetimeScope(); // as scoped
+});
+
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 app.UseStaticFiles();
