@@ -12,11 +12,11 @@ public class CitiesService : ICitiesService, IDisposable
         _serviceInstanceId = Guid.NewGuid();
         _cities = new List<string>()
         {
-            "London",
-            "Paris",
-            "New York",
-            "Tokyo",
-            "Rome"
+            "London1",
+            "Paris1",
+            "New York1",
+            "Tokyo1",
+            "Rome1"
         };
         // add logic to create db connection
     }
