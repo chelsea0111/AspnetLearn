@@ -7,7 +7,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
-    endpoints.Map("/", async context =>
+    endpoints.Map("/config", async context =>
     {
         await context.Response.WriteAsync(app.Configuration["MyKey"] + "\n");
         await context.Response.WriteAsync(app.Configuration.GetValue<string>("x","default value"));
