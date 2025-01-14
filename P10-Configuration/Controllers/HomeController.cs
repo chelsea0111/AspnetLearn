@@ -20,9 +20,9 @@ public class HomeController : Controller
         // ViewBag.ClientID = _configuration["WeatherApi:ClientID"];
         // ViewBag.ClientSecret = _configuration.GetValue<string>("WeatherApi:ClientSecret", "default secret");
 
-        IConfigurationSection WeatherApisection = _configuration.GetSection("WeatherApi");
-        ViewBag.ClientID = WeatherApisection["ClientID"];
-        ViewBag.ClientSecret = WeatherApisection.GetValue<string>("ClientSecret", "default");
+        WeatherApiOptions? weatherApiOptions = _configuration.GetSection("WeatherApi").Get<WeatherApiOptions>();
+        ViewBag.ClientID = weatherApiOptions.ClientID;
+        ViewBag.ClientSecret = weatherApiOptions.ClientSecret;
 
         return View();
     }
