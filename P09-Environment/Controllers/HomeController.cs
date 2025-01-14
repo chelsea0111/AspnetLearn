@@ -4,16 +4,17 @@ namespace P09_Environment.Controllers;
 
 public class HomeController : Controller
 {
-    [Route("/")]
-    [Route("some-route")]
-    public IActionResult Index()
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
+    public HomeController(IWebHostEnvironment webHostEnvironment)
     {
-        return View();
+        _webHostEnvironment = webHostEnvironment;
     }
 
-    [Route("some-route")]
-    public IActionResult Other()
+    [Route("/")]
+    public IActionResult Index()
     {
+        ViewBag.CurrentEnvironment = _webHostEnvironment.EnvironmentName;
         return View();
     }
 }
