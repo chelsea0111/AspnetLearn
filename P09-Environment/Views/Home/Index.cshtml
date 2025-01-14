@@ -5,3 +5,16 @@
 <div class="box">
     Environment: @ViewBag.CurrentEnvironment
 </div>
+
+<environment include="Staging">
+    <button class="button button-blue-back">
+        Button only for Staging Environment
+    </button>
+</environment>
+
+<environment exclude="Development">
+    <button class="button button-green-back">
+        Button only for except Development Environment
+    </button>
+</environment>
+
