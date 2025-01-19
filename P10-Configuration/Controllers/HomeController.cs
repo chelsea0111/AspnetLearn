@@ -1,33 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace P10_Configuration.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IConfiguration _configuration;
+    private readonly WeatherApiOptions _options;
 
-    public HomeController(IConfiguration configuration)
+    public HomeController(IOptions<WeatherApiOptions> weatherApiOptions)
     {
-        _configuration = configuration;
+        _options = weatherApiOptions.Value;
     }
 
     [Route("/")]
     public IActionResult Index()
     {
-        ViewBag.MyKey1 = _configuration["MyKey"];
-        ViewBag.MyKey2 = _configuration.GetValue<string>("x", "default");
-
-        // WeatherApiOptions? weatherApiOptions = _configuration.GetSection("WeatherApi").Get<WeatherApiOptions>();
-        // ViewBag.ClientID = weatherApiOptions.ClientID;
-        // ViewBag.ClientSecret = weatherApiOptions.ClientSecret;
-
-        WeatherApiOptions options = new WeatherApiOptions();
-        IConfigurationSection confSection = _configuration.GetSection("WeatherApi");
-
-        // Loads conf values into a new Options object
-        confSection.Bind(options);
-        ViewBag.ClientID = options.ClientID;
-        ViewBag.ClientSecret = options.ClientSecret;
+        ViewBag.ClientID = _options.ClientID;
+        ViewBag.ClientSecret = _options.ClientSecret;
 
         return View();
     }
