@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P09-Environment", "P09-Envi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P10-Configuration", "P10-Configuration\P10-Configuration.csproj", "{18BDDC08-91EB-49B3-AB29-CE3BED37F7DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P11-HttpClient", "P11-HttpClient\P11-HttpClient.csproj", "{39875CBA-6808-4F2B-A8DD-BC01A5E798A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,5 +72,9 @@ Global
 		{18BDDC08-91EB-49B3-AB29-CE3BED37F7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18BDDC08-91EB-49B3-AB29-CE3BED37F7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18BDDC08-91EB-49B3-AB29-CE3BED37F7DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39875CBA-6808-4F2B-A8DD-BC01A5E798A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39875CBA-6808-4F2B-A8DD-BC01A5E798A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39875CBA-6808-4F2B-A8DD-BC01A5E798A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39875CBA-6808-4F2B-A8DD-BC01A5E798A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
